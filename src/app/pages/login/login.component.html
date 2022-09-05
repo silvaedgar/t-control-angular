@@ -1,0 +1,37 @@
+<app-spinner message="Verificando Datos de usuario ... " *ngIf="loading"></app-spinner>
+
+  <div class="container">
+    <div class="row" style="margin-top: 20px;">
+      <div class="col-sm-6 offset-sm-3">
+          <mat-card class="mt-5" style="width: 320px">
+              <div class="container text-center">
+                  <img src="./assets/login.png" width="100" height="100" />
+              </div>
+              <h5 class="text-center">Inicio de Sesion</h5>
+              <form  *ngIf="!loading" [formGroup]="formLogin" (ngSubmit) = "formSubmit()" >
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Correo</mat-label>
+                  <input type = "email" required matInput formControlName="email" placeholder="Ingrese el username" required>
+                </mat-form-field>
+                <span class="error" *ngIf="!isLogin"> Credenciales no registradas</span>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Ingrese Password</mat-label>
+                    <input type = "password" required matInput formControlName="password"  placeholder="Ingrese su Password" />
+                </mat-form-field>
+                <br/>
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <button mat-raised-button color="primary" [disabled]="formLogin.invalid">Inicio de Sesion</button>
+                  </div>
+                  <div class="col-sm-4">
+                    <button type = "reset" mat-raised-button color="accent">Limpiar</button>
+                  </div>
+                </div>
+              </div>
+
+              </form>
+          </mat-card>
+      </div>
+    </div>
+  </div>

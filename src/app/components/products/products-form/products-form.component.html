@@ -1,0 +1,99 @@
+<app-spinner message="{{ message }} " *ngIf="updating"></app-spinner>
+
+<app-card-header *ngIf="!updating" [headerContains] = "headerContains"></app-card-header>
+
+<mat-card *ngIf="!updating" class="example-card mat-elevation-z8 mx-auto cardBody" style = "height: 100%">
+  <form class = "mt-5" [formGroup]="formLogin" (ngSubmit) = "formSubmit()" >
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Codigo</mat-label>
+              <input required matInput  formControlName ="code"  placeholder="Codigo del Producto">
+              <span class = "error"> {{ messageError('code') }} </span>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-8">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Descripcion</mat-label>
+              <input required matInput  formControlName ="name"  placeholder="Nombre Producto">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Categoria del Producto</mat-label>
+<!-- El mat-select no funciona bien con onSelectChange se atrasa en uno y con el click no funciona si se usa teclado                 -->
+                <mat-select formControlName="categoryId" >
+                  <mat-option>Seleccione Categoria ...</mat-option>
+                  <mat-option *ngFor="let category of categories" [value]="category.id"
+                              (click) ="assignDescriptionGroup(category.productGroup.description)">
+                        {{ category.description}} </mat-option>
+                </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-6">
+              <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Grupo de Producto</mat-label>
+                  <input readonly="true" matInput placeholder="Grupo del Producto" formControlName="descriptionGroup">
+              </mat-form-field>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Impuesto</mat-label>
+              <mat-select formControlName="taxId" >
+                  <mat-option>Seleccione Impuesto ...</mat-option>
+                  <mat-option *ngFor="let tax of taxes" [value]="tax.id">  {{ tax.description}} </mat-option>
+                </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Precio Costo {{ coinSymbols.purchasePrice }} </mat-label>
+              <input type = "number" required matInput  formControlName ="costPrice"
+                    (keyup)="calculateOtherMount('Purchase',false)" placeholder="Costo del Producto">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Precio Venta {{ coinSymbols.purchasePrice }} </mat-label>
+              <input type = "number" required matInput  formControlName ="salePrice"
+                  (keyup)="calculateOtherMount('Sale',false)" placeholder="Precio del Producto">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label> {{ coinSymbols.sale }} </mat-label>
+              <input type = "number" required matInput  formControlName ="costOtherPrice"
+                   (keyup)="calculateOtherMount('Purchase',true)" placeholder="Costo del Producto">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>{{ coinSymbols.sale }}</mat-label>
+              <input type = "number" required matInput  formControlName ="saleOtherPrice"
+                    (keyup)="calculateOtherMount('Sale',true)" placeholder="Precio del Producto">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="container text-center" style="width:100%; margin-left: -20px;">
+        <div class="row mt-4">
+          <div class="col-sm-6">
+              <button mat-raised-button color="primary" [disabled]="formLogin.invalid">Grabar</button>
+          </div>
+          <div class="col-sm-4">
+              <button type = "reset" (click) = "closeForm()" mat-raised-button color="accent">Cancelar y Salir</button>
+          </div>
+        </div>
+      </div>
+  </form>
+</mat-card>
+
+

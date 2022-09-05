@@ -1,0 +1,244 @@
+
+
+<div id="wrapper">
+
+  <!-- Sidebar -->
+  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+          <!-- <div class="sidebar-brand-icon rotate-n-15">
+          </div> -->
+          <div class="sidebar-brand-text mx-3">T-Control Sistema</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+          <a class="nav-link" href="index.html">
+              <i class="fas fa-fw fa-tachometer-alt"></i>
+              <span>Inicio</span></a>
+      </li>
+
+      <!-- Menu de Compras -->
+      <li class="nav-item" *ngIf="!isClient">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseCompras"
+            aria-expanded="true" aria-controls="collapseCompras">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Sistema de Compras</span>
+        </a>
+        <div id="collapseCompras" class="collapse" aria-labelledby="headingCompras" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+<!--                        <h6 class="collapse-header">Custom Components:</h6>  -->
+                <a class="collapse-item" [routerLink]="['suppliers']">Proveedores</a>
+                <a class="collapse-item" [routerLink]="['create-purchases']">Factura de Compra</a>
+                <a class="collapse-item" [routerLink]="['payment-invoice-purchases']">Pagos a Proveedor</a>
+            </div>
+        </div>
+      </li>
+
+      <!-- Menu de Ventas -->
+      <li class="nav-item" *ngIf="!isClient">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseFacturacion"
+              aria-expanded="true" aria-controls="collapseFacturacion">
+              <i class="fas fa-file-invoice-dollar"></i>
+              <span>Sistema de Ventas</span>
+          </a>
+          <div id="collapseFacturacion" class="collapse" aria-labelledby="headingFacturacion"
+                      data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+  <!--                        <h6 class="collapse-header">Custom Components:</h6>  -->
+                  <a class="collapse-item" [routerLink]="['clients']">Clientes</a>
+                  <a class="collapse-item" [routerLink]="['create-sales']">Facturar Venta</a>
+                  <a class="collapse-item" [routerLink]="['payment-invoice-sales']">Pago de Clientes</a>
+                </div>
+          </div>
+      </li>
+
+      <!-- Menu de Almacen -->
+      <li class="nav-item" *ngIf="!isClient">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseAlmacen"
+              aria-expanded="true" aria-controls="collapseAlmacen">
+              <i class="fas fa-store"></i>
+              <span>Sistema de Almacen</span>
+          </a>
+          <div id="collapseAlmacen" class="collapse" aria-labelledby="headingAlmacen" data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+  <!--                        <h6 class="collapse-header">Custom Components:</h6>  -->
+                  <a class="collapse-item" [routerLink]="['products']">Productos</a>
+              </div>
+          </div>
+      </li>
+
+      <!-- Menu de Mantenimiento -->
+      <li class="nav-item" *ngIf="!isClient">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMantenimiento"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-fw fa-wrench"></i>
+              <span>Mantenimiento General</span>
+          </a>
+          <div id="collapseMantenimiento" class="collapse" aria-labelledby="headingMantenimiento"
+              data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+  <!--                        <h6 class="collapse-header">Custom Utilities:</h6>  -->
+                  <a class="collapse-item" [routerLink]= "['/product-groups']">Grupos  de Productos</a>
+                  <a class="collapse-item" [routerLink]="['/product-categories']">Categorias de Productos</a>
+                  <a class="collapse-item" [routerLink]="['coins']">Monedas</a>
+                  <a class="collapse-item" [routerLink]="['payment-forms']">Formas de Pagos</a>
+                  <a class="collapse-item" [routerLink]="['iva']">Mantenimiento de IVA</a>
+                  <a class="collapse-item" [routerLink]="['users']">Usuarios</a>
+
+              </div>
+          </div>
+
+      </li>
+
+
+      <!-- Menu del Cliente-->
+      <li class="nav-item" *ngIf="isClient">
+          <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers"
+              aria-expanded="true" aria-controls="collapseUtilities">
+              <i class="fas fa-fw fa-wrench"></i>
+              <span>Opciones de Usuario</span>
+          </a>
+          <div id="collapseUsers" class="collapse" aria-labelledby="headingusers"
+              data-parent="#accordionSidebar">
+              <div class="bg-white py-2 collapse-inner rounded">
+  <!--                        <h6 class="collapse-header">Custom Utilities:</h6>  -->
+                  <a class="collapse-item" [routerLink]="['product-rubrics']">Estado de Cuenta</a>
+                  <a class="collapse-item" [routerLink]="['product-groups']">Actualizar Datos</a>
+              </div>
+          </div>
+
+      </li>
+
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+<!--            <div class="sidebar-heading">
+        Interacción con el Sistema
+    </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseInteraccion"
+            aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Interaccion con el Sistema</span>
+        </a>
+        <div id="collapseInteraccion" class="collapse" aria-labelledby="headingInteraccion" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+<!--                        <h6 class="collapse-header">Login Screens:</h6>   -->
+                <a class="collapse-item" href="#">Cerrar Sesión</a>
+                <a class="collapse-item" href="#">Iniciar Sesión</a>
+                <a class="collapse-item" href="#">Olvio de Password</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">Other Pages:</h6>
+                <a class="collapse-item" href="404.html">404 Page</a>
+                <a class="collapse-item" href="blank.html">Blank Page</a>
+            </div>
+        </div>
+    </li>
+    <li>
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+          <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+    </li>
+  </ul>
+  <!-- End of Sidebar -->
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+          <!-- Topbar -->
+          <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            Sistema T-Control
+
+              <!-- Sidebar Toggle (Topbar) -->
+              <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                  <i class="fa fa-bars"></i>
+              </button>
+
+
+              <!-- Topbar Navbar -->
+              <ul class="navbar-nav ml-auto">
+
+                  <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                  <li class="nav-item dropdown no-arrow d-sm-none">
+                      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="fas fa-search fa-fw"></i>
+                      </a>
+                      <!-- Dropdown - Messages -->
+                      <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                          aria-labelledby="searchDropdown">
+                          <form class="form-inline mr-auto w-100 navbar-search">
+                              <div class="input-group">
+                                  <input type="text" class="form-control bg-light border-0 small"
+                                      placeholder="Search for..." aria-label="Search"
+                                      aria-describedby="basic-addon2">
+                                  <div class="input-group-append">
+                                      <button class="btn btn-primary" type="button">
+                                          <i class="fas fa-search fa-sm"></i>
+                                      </button>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </li>
+
+
+                  <div class="topbar-divider d-none d-sm-block"></div>
+
+                  <!-- Nav Item - User Information -->
+                  <li class="nav-item dropdown no-arrow">
+                      <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                          data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                          <img class="img-profile rounded-circle"
+                              src="img/undraw_profile.svg">
+                      </a>
+                      <!-- Dropdown - User Information -->
+                      <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                          aria-labelledby="userDropdown">
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Profile
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Settings
+                          </a>
+                          <a class="dropdown-item" href="#">
+                              <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Activity Log
+                          </a>
+                          <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                              <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                              Logout
+                          </a>
+                      </div>
+                  </li>
+
+              </ul>
+
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+              <router-outlet></router-outlet>
+          </div>
+          <!-- /.container-fluid -->
+

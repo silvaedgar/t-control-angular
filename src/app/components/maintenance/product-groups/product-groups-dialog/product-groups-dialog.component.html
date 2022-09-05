@@ -1,0 +1,24 @@
+<app-spinner message="Grabando Datos ... " *ngIf="updating"></app-spinner>
+
+<app-card-header *ngIf="!updating" [headerContains]="headerContains"></app-card-header>
+
+<mat-card *ngIf="!updating" class="example-card mat-elevation-z8 mx-auto cardBody" style = "height: 100%">
+  <form  class = "mt-5" [formGroup]="formLogin" (ngSubmit) = "formSubmit()" >
+    <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Descripción del Grupo</mat-label>
+        <input required matInput formControlName="description"  placeholder="Descripción del grupo">
+        <span class="error"> {{ messageError('description') }} </span>
+    </mat-form-field>
+    <br/>
+    <div class="container text-center" style="width:100%; margin-left: -20px">
+      <div class="row " >
+         <div class="col-sm-6">
+            <button mat-raised-button color="primary" [disabled]="formLogin.invalid">Grabar</button>
+         </div>
+         <div class="col-sm-4">
+            <button type = "reset" (click) = "closeModal(false)" mat-raised-button color="accent">Cancelar y Salir</button>
+         </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

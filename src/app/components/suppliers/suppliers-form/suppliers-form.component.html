@@ -1,0 +1,66 @@
+<app-spinner message= "{{ message }}" *ngIf="updating"></app-spinner>
+
+<app-card-header *ngIf="!updating" [headerContains]="headerContains"></app-card-header>
+
+<mat-card *ngIf="!updating" class="example-card mat-elevation-z8 mx-auto cardBody" style = "height: 320px">
+  <form class = "mt-5" [formGroup]="formLogin" (ngSubmit) = "formSubmit()" >
+      <div class="row">
+        <div class="col-sm-2">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>RIF/CI</mat-label>
+              <mat-select formControlName="documentType" style="width:90%">
+                  <mat-option value="V">V</mat-option>
+                  <mat-option value="E">E</mat-option>
+                  <mat-option value="J">J</mat-option>
+                  <mat-option value="G">G</mat-option>
+                  <mat-option value="P">P</mat-option>
+              </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Documento</mat-label>
+              <input required matInput  formControlName ="document"  placeholder="Numero de Documento">
+              <span class = "error"> {{ messageError('document') }} </span>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-6">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Nombre</mat-label>
+              <input required matInput  formControlName ="name"  placeholder="Nombre del Proveedor">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Contacto</mat-label>
+              <input required matInput  formControlName ="contact"  placeholder="Contacto del Proveedor">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Direccion</mat-label>
+              <input required matInput  formControlName ="address"  placeholder="Dirección del Proveedor">
+          </mat-form-field>
+        </div>
+        <div class="col-sm-4">
+          <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Telefono</mat-label>
+              <input required matInput  formControlName ="phone"  placeholder="Telefono del Proveedor">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="container text-center" style="width:100%; margin-left: -20px;">
+        <div class="row mt-4">
+          <div class="col-sm-6">
+              <button mat-raised-button color="primary" [disabled]="formLogin.invalid">Grabar</button>
+          </div>
+          <div class="col-sm-4">
+              <button  (click) = "closeForm()" mat-raised-button color="accent">Cancelar y Salir</button>
+          </div>
+        </div>
+      </div>
+  </form>
+</mat-card>
+

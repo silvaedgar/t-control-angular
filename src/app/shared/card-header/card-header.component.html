@@ -1,0 +1,45 @@
+<mat-card class="example-card mat-elevation-z8 mx-auto cardHeader" *ngIf = "headerContains.listForm">
+  <div class="row">
+    <div class="col-sm-8">
+      <mat-card-title> {{ headerContains.title1 }} </mat-card-title>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-3 justify-content-end">
+          <button *ngIf = "headerContains.errorMessage == ''" mat-button class="btn btn-info text-end"
+              (click) = "callFormOrDialog()">
+              <em class="fa fa-user-plus"> {{ headerContains.subTitle1 }} </em></button>
+    </div>
+  </div>
+  <div class = "row" *ngIf = "headerContains.errorMessage!= ''">
+      <span style = "background-color: yellow; color : red;"> {{ headerContains.errorMessage }}</span>
+  </div>
+</mat-card>
+
+<mat-card class="mat-elevation-z8 mx-auto cardHeader" style="margin-top:-15px" *ngIf="!headerContains.listForm" >
+    <div class="row">
+      <div class="col-sm-6">
+          <h6>{{ headerContains.title1 }} </h6>
+      </div>
+      <div class="col-sm-4">
+          <h6>{{ headerContains.title2 }} </h6>
+      </div>
+      <div class="col-sm-2">
+          <h6>{{ headerContains.title3 }} </h6>
+      </div>
+    </div>
+    <div class = "row" *ngIf = "headerContains.errorMessage == ''">
+      <div class="col-sm-4">
+          <h6>{{ headerContains.subTitle1 }} </h6>
+      </div>
+      <div class="col-sm-4">
+          <h6>{{ headerContains.subTitle2 }} </h6>
+      </div>
+      <div class="col-sm-4">
+          <h6>{{ headerContains.subTitle3 }} </h6>
+      </div>
+    </div>
+    <div class = "row" *ngIf = "headerContains.errorMessage!= ''">
+        <span style = "background-color: yellow; color : red;"> {{ headerContains.errorMessage }}</span>
+    </div>
+</mat-card>
+
